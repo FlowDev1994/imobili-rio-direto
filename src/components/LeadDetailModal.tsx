@@ -35,12 +35,21 @@ const statusLabels: Record<Lead['status'], string> = {
   contactado: 'Contactado',
   qualificado: 'Qualificado',
   negociando: 'Negociando',
+  fechado: 'Fechado',
+  perdido: 'Perdido',
 };
 
 const tipoLabels: Record<Lead['tipo'], string> = {
-  venda: 'Venda',
-  compra: 'Compra',
-  aluguel: 'Aluguel',
+  venda: 'Quer Vender',
+  compra: 'Quer Comprar',
+  aluguel: 'Quer Alugar',
+};
+
+const propertyTypeLabels: Record<Lead['tipoImovel'], string> = {
+  casa: 'Casa',
+  apartamento: 'Apartamento',
+  terreno: 'Terreno',
+  comercial: 'Comercial',
 };
 
 export function LeadDetailModal({ lead, open, onOpenChange }: LeadDetailModalProps) {
@@ -93,6 +102,9 @@ export function LeadDetailModal({ lead, open, onOpenChange }: LeadDetailModalPro
             <Badge variant="outline" className="text-xs px-2 py-0.5 border-muted-foreground/30 text-muted-foreground">
               {tipoLabels[lead.tipo]}
             </Badge>
+            <Badge variant="outline" className="text-xs px-2 py-0.5 border-primary/30 text-primary">
+              {propertyTypeLabels[lead.tipoImovel]}
+            </Badge>
           </div>
           <DialogTitle className="text-xl font-display">{lead.nome}</DialogTitle>
         </DialogHeader>
@@ -132,7 +144,7 @@ export function LeadDetailModal({ lead, open, onOpenChange }: LeadDetailModalPro
                 <Home className="w-4 h-4 text-primary mt-1" />
                 <div>
                   <p className="font-medium">{lead.imovel.titulo}</p>
-                  <p className="text-sm text-muted-foreground">{lead.imovel.tipo}</p>
+                  <p className="text-sm text-muted-foreground">{propertyTypeLabels[lead.tipoImovel]}</p>
                 </div>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">

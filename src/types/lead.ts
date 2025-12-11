@@ -1,6 +1,7 @@
 export type LeadSource = 'olx' | 'facebook';
 export type LeadType = 'venda' | 'compra' | 'aluguel';
-export type LeadStatus = 'novo' | 'contactado' | 'qualificado' | 'negociando';
+export type PropertyType = 'casa' | 'apartamento' | 'terreno' | 'comercial';
+export type LeadStatus = 'novo' | 'contactado' | 'qualificado' | 'negociando' | 'fechado' | 'perdido';
 
 export interface Lead {
   id: string;
@@ -9,10 +10,10 @@ export interface Lead {
   email?: string;
   fonte: LeadSource;
   tipo: LeadType;
+  tipoImovel: PropertyType;
   status: LeadStatus;
   imovel: {
     titulo: string;
-    tipo: string;
     localizacao: string;
     preco: number;
     area?: number;
