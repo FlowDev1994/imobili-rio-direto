@@ -10,6 +10,8 @@ interface LeadFiltersProps {
   onSourceChange: (value: string) => void;
   typeFilter: string;
   onTypeChange: (value: string) => void;
+  propertyTypeFilter: string;
+  onPropertyTypeChange: (value: string) => void;
   statusFilter: string;
   onStatusChange: (value: string) => void;
 }
@@ -21,6 +23,8 @@ export function LeadFilters({
   onSourceChange,
   typeFilter,
   onTypeChange,
+  propertyTypeFilter,
+  onPropertyTypeChange,
   statusFilter,
   onStatusChange,
 }: LeadFiltersProps) {
@@ -77,19 +81,40 @@ export function LeadFilters({
         </div>
         
         <div className="space-y-2">
-          <p className="text-xs text-muted-foreground font-medium uppercase tracking-wider">Tipo</p>
+          <p className="text-xs text-muted-foreground font-medium uppercase tracking-wider">Interesse</p>
           <div className="flex gap-1">
             <FilterButton active={typeFilter === 'all'} onClick={() => onTypeChange('all')}>
               Todos
             </FilterButton>
-            <FilterButton active={typeFilter === 'venda'} onClick={() => onTypeChange('venda')}>
-              Venda
-            </FilterButton>
             <FilterButton active={typeFilter === 'compra'} onClick={() => onTypeChange('compra')}>
-              Compra
+              Quer Comprar
+            </FilterButton>
+            <FilterButton active={typeFilter === 'venda'} onClick={() => onTypeChange('venda')}>
+              Quer Vender
             </FilterButton>
             <FilterButton active={typeFilter === 'aluguel'} onClick={() => onTypeChange('aluguel')}>
-              Aluguel
+              Quer Alugar
+            </FilterButton>
+          </div>
+        </div>
+        
+        <div className="space-y-2">
+          <p className="text-xs text-muted-foreground font-medium uppercase tracking-wider">Tipo de Imóvel</p>
+          <div className="flex gap-1">
+            <FilterButton active={propertyTypeFilter === 'all'} onClick={() => onPropertyTypeChange('all')}>
+              Todos
+            </FilterButton>
+            <FilterButton active={propertyTypeFilter === 'casa'} onClick={() => onPropertyTypeChange('casa')}>
+              Casa
+            </FilterButton>
+            <FilterButton active={propertyTypeFilter === 'apartamento'} onClick={() => onPropertyTypeChange('apartamento')}>
+              Apartamento
+            </FilterButton>
+            <FilterButton active={propertyTypeFilter === 'terreno'} onClick={() => onPropertyTypeChange('terreno')}>
+              Terreno
+            </FilterButton>
+            <FilterButton active={propertyTypeFilter === 'comercial'} onClick={() => onPropertyTypeChange('comercial')}>
+              Comercial
             </FilterButton>
           </div>
         </div>

@@ -14,6 +14,7 @@ const Index = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [sourceFilter, setSourceFilter] = useState('all');
   const [typeFilter, setTypeFilter] = useState('all');
+  const [propertyTypeFilter, setPropertyTypeFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState('all');
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
@@ -28,11 +29,12 @@ const Index = () => {
       
       const matchesSource = sourceFilter === 'all' || lead.fonte === sourceFilter;
       const matchesType = typeFilter === 'all' || lead.tipo === typeFilter;
+      const matchesPropertyType = propertyTypeFilter === 'all' || lead.tipoImovel === propertyTypeFilter;
       const matchesStatus = statusFilter === 'all' || lead.status === statusFilter;
       
-      return matchesSearch && matchesSource && matchesType && matchesStatus;
+      return matchesSearch && matchesSource && matchesType && matchesPropertyType && matchesStatus;
     });
-  }, [leads, searchTerm, sourceFilter, typeFilter, statusFilter]);
+  }, [leads, searchTerm, sourceFilter, typeFilter, propertyTypeFilter, statusFilter]);
 
   const stats = useMemo(() => {
     const total = leads.length;
@@ -114,6 +116,8 @@ const Index = () => {
             onSourceChange={setSourceFilter}
             typeFilter={typeFilter}
             onTypeChange={setTypeFilter}
+            propertyTypeFilter={propertyTypeFilter}
+            onPropertyTypeChange={setPropertyTypeFilter}
             statusFilter={statusFilter}
             onStatusChange={setStatusFilter}
           />

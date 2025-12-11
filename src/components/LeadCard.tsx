@@ -16,12 +16,21 @@ const statusLabels: Record<Lead['status'], string> = {
   contactado: 'Contactado',
   qualificado: 'Qualificado',
   negociando: 'Negociando',
+  fechado: 'Fechado',
+  perdido: 'Perdido',
 };
 
 const tipoLabels: Record<Lead['tipo'], string> = {
-  venda: 'Venda',
-  compra: 'Compra',
-  aluguel: 'Aluguel',
+  venda: 'Quer Vender',
+  compra: 'Quer Comprar',
+  aluguel: 'Quer Alugar',
+};
+
+const propertyTypeLabels: Record<Lead['tipoImovel'], string> = {
+  casa: 'Casa',
+  apartamento: 'Apartamento',
+  terreno: 'Terreno',
+  comercial: 'Comercial',
 };
 
 export function LeadCard({ lead, onClick, delay = 0 }: LeadCardProps) {
@@ -54,6 +63,9 @@ export function LeadCard({ lead, onClick, delay = 0 }: LeadCardProps) {
             </Badge>
             <Badge variant="outline" className="text-xs px-2 py-0.5 border-muted-foreground/30 text-muted-foreground">
               {tipoLabels[lead.tipo]}
+            </Badge>
+            <Badge variant="outline" className="text-xs px-2 py-0.5 border-primary/30 text-primary">
+              {propertyTypeLabels[lead.tipoImovel]}
             </Badge>
           </div>
           
